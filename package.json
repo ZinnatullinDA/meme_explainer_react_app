@@ -1,0 +1,43 @@
+{
+  "name": "meme-explainer",
+  "version": "1.0.0",
+  "description": "Веб-приложение для объяснения мемов с помощью искусственного интеллекта",
+  "private": true,
+  "scripts": {
+    "prepare": "husky",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:ci": "npm run lint:ci --workspaces --if-present",
+    "lint:fix": "npm run lint:fix --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:ci": "npm run test:ci --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "typecheck:ci": "npm run typecheck:ci --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "start": "run-p start:backend start:frontend",
+    "start:backend": "cd backend && npm run dev",
+    "start:frontend": "cd front-end && npm run start"
+  },
+  "workspaces": [
+    "backend",
+    "front-end"
+  ],
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "npm run lint:fix --workspaces --if-present"
+    ],
+    "*.{json,css,md}": "prettier --write"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.4.2",
+    "@commitlint/config-conventional": "^20.4.2",
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.8.1"
+  }
+}
