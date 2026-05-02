@@ -17,11 +17,11 @@
     "build": "npm run build --workspaces --if-present",
     "start": "run-p start:backend start:frontend",
     "start:backend": "cd backend && npm run dev",
-    "start:frontend": "cd front-end && npm run start"
+    "start:frontend": "cd frontend && npm run dev"
   },
   "workspaces": [
     "backend",
-    "front-end"
+    "frontend"
   ],
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
