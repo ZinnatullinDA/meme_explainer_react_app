@@ -15,7 +15,11 @@ import { AppLayout } from '@/shared/ui/app-layout'
 
 const rootRoute = createRootRoute({
   component: AppLayout,
-  notFoundComponent: () => <Navigate replace to={ROUTES.home} />,
+  notFoundComponent: () => (
+    <Navigate
+      replaceto={ROUTES.home}
+    />
+  ),
 })
 
 const homeRoute = createRoute({

@@ -118,7 +118,10 @@ export default antfu(
     },
   },
 
-  eslintConfigPrettier,
+  {
+    ...eslintConfigPrettier,
+    ignores: ['**/*.tsx'],
+  },
   {
     rules: {
       'format/prettier': 'off',

@@ -15,8 +15,12 @@ export function AppLayout() {
     <div className="app-shell">
       <header className="topbar">
         <div>
-          <p className="eyebrow">Explain the joke</p>
-          <span className="brand">{APP_NAME}</span>
+          <p className="eyebrow">
+            Explain the joke
+          </p>
+          <span className="brand">
+            {APP_NAME}
+          </span>
         </div>
         <nav className="nav">
           <Link

@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "prepare": "husky",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format": "prettier --write \"**/*.{ts,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,jsx,json,css,md}\"",
     "lint": "npm run lint --workspaces --if-present",
     "lint:ci": "npm run lint:ci --workspaces --if-present",
     "lint:fix": "npm run lint:fix --workspaces --if-present",
@@ -24,10 +24,11 @@
     "frontend"
   ],
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "*.{js,jsx,ts}": [
       "prettier --write",
       "npm run lint:fix --workspaces --if-present"
     ],
+    "*.tsx": "npm run lint:fix --workspaces --if-present",
     "*.{json,css,md}": "prettier --write"
   },
   "devDependencies": {
