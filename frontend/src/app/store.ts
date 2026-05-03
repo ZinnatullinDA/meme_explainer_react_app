@@ -4,7 +4,7 @@ import { explanationsReducer } from '@/entities/explanation'
 import { favoritesReducer } from '@/entities/favorite-mems'
 import { memesReducer } from '@/entities/meme'
 import { notesReducer } from '@/entities/note'
-// import { uiReducer } from '@/features/meme-filters/model/ui-slice'
+import { memeFilterReducer } from '@/features/meme'
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +13,7 @@ export const store = configureStore({
     explanations: explanationsReducer,
     notes: notesReducer,
     collections: collectionsReducer,
-    // ui: uiReducer,
+    memeFilter: memeFilterReducer,
   },
 })
 
