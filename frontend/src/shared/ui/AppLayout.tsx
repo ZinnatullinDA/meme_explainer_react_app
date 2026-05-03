@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { APP_NAME } from '@/shared/config/app'
 import { ROUTES } from '@/shared/config/routes'
 import { saveLastMemeListRoute } from '@/shared/lib/meme-list-route'
+import styles from './AppLayout.module.css'
 
 export function AppLayout() {
   const location = useLocation()
@@ -12,42 +13,42 @@ export function AppLayout() {
   }, [location.pathname])
 
   return (
-    <div className="app-shell">
-      <header className="topbar">
+    <div className={styles['app-layout']}>
+      <header className={styles['app-layout__topbar']}>
         <div>
-          <p className="eyebrow">
+          <p className={styles['app-layout__eyebrow']}>
             Explain the joke
           </p>
-          <span className="brand">
+          <span className={styles['app-layout__brand']}>
             {APP_NAME}
           </span>
         </div>
-        <nav className="nav">
+        <nav className={styles['app-layout__nav']}>
           <Link
             activeOptions={{ exact: true }}
-            activeProps={{ className: 'nav-link active' }}
-            className="nav-link"
+            activeProps={{ className: `${styles['app-layout__nav-link']} ${styles['app-layout__nav-link--active']}` }}
+            className={styles['app-layout__nav-link']}
             to={ROUTES.home}
           >
             Мемы
           </Link>
           <Link
-            activeProps={{ className: 'nav-link active' }}
-            className="nav-link"
+            activeProps={{ className: `${styles['app-layout__nav-link']} ${styles['app-layout__nav-link--active']}` }}
+            className={styles['app-layout__nav-link']}
             to={ROUTES.slang}
           >
             Сленг
           </Link>
           <Link
-            activeProps={{ className: 'nav-link active' }}
-            className="nav-link"
+            activeProps={{ className: `${styles['app-layout__nav-link']} ${styles['app-layout__nav-link--active']}` }}
+            className={styles['app-layout__nav-link']}
             to={ROUTES.favorites}
           >
             Избранное
           </Link>
           <Link
-            activeProps={{ className: 'nav-link active' }}
-            className="nav-link"
+            activeProps={{ className: `${styles['app-layout__nav-link']} ${styles['app-layout__nav-link--active']}` }}
+            className={styles['app-layout__nav-link']}
             to={ROUTES.collections}
           >
             Подборки
@@ -55,7 +56,7 @@ export function AppLayout() {
         </nav>
       </header>
 
-      <main className="content">
+      <main className={styles['app-layout__content']}>
         <Outlet />
       </main>
     </div>

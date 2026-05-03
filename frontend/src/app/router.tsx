@@ -7,17 +7,18 @@ import {
 } from '@tanstack/react-router'
 import { CollectionsPage } from '@/pages/collections-page/ui/collections-page'
 import { FavoritesPage } from '@/pages/favorites-page/ui/favorites-page'
-import { HomePage } from '@/pages/home-page/ui/home-page'
+import { HomePage } from '@/pages/HomePage/ui/HomePage'
 import { MemeDetailsPage } from '@/pages/meme-details-page/ui/meme-details-page'
 import { SlangPage } from '@/pages/slang-page/ui/slang-page'
 import { ROUTES } from '@/shared/config/routes'
-import { AppLayout } from '@/shared/ui/app-layout'
+import { AppLayout } from '@/shared/ui/AppLayout'
 
 const rootRoute = createRootRoute({
   component: AppLayout,
   notFoundComponent: () => (
     <Navigate
-      replaceto={ROUTES.home}
+      replace
+      to={ROUTES.home}
     />
   ),
 })

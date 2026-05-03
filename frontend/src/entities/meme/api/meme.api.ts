@@ -6,13 +6,18 @@ import { mapImgflipMeme, mapMemeApiMeme } from '../lib/map-meme'
 
 export const memeApiService = {
   async fetchMemes(): Promise<Meme[]> {
-    const [response, slangMemes] = await Promise.all([
-      makeRequest<ImgflipResponse>({ url: ENDPOINTS.IMGFLIP }),
-      memeApiService.fetchSlangMemes(),
-    ])
+    const response = await makeRequest<ImgflipResponse>({ url: ENDPOINTS.IMGFLIP })
 
     if (!response.success) {
       throw new Error('Imgflip returned unsuccessful response')
+    }
+
+    let slangMemes: Meme[] = []
+
+    try {
+      slangMemes = await memeApiService.fetchSlangMemes()
+    } catch {
+      slangMemes = []
     }
 
     return [...slangMemes, ...response.data.memes.map(mapImgflipMeme)]
