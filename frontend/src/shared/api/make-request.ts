@@ -1,24 +1,16 @@
-import { baseFetch } from './base-fetch'
+import { baseFetch } from '@/shared/api/base-fetch'
 
 interface RequestConfig {
-  url: string
-  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
-  headers?: HeadersInit
-  params?: Record<string, string | number | boolean | null | undefined>
   data?: unknown
-  token?: string
+  headers?: HeadersInit
+  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
+  params?: Record<string, string | number | boolean | null | undefined>
   timeout?: number
+  token?: string
+  url: string
 }
 
-export function makeRequest<T>({
-  url,
-  method = 'GET',
-  headers,
-  params,
-  data,
-  token,
-  timeout,
-}: RequestConfig): Promise<T> {
+export function makeRequest<T>({ url, method = 'GET', headers, params, data, token, timeout }: RequestConfig): Promise<T> {
   return baseFetch<T>(url, {
     method,
     headers,

@@ -1,6 +1,6 @@
 interface BaseFetchOptions extends RequestInit {
-  timeout?: number
   params?: Record<string, string | number | boolean | null | undefined>
+  timeout?: number
   token?: string
 }
 
@@ -9,8 +9,8 @@ export async function baseFetch<T>(input: string, options: BaseFetchOptions = {}
 
   const controller = new AbortController()
   const timeoutId = window.setTimeout(() => controller.abort(), timeout)
-
-  const url = new URL(input, import.meta.env.VITE_API_BASE_URL)
+  const baseUrl = import.meta.env.VITE_API_BASE_URL ?? window.location.origin
+  const url = new URL(input, baseUrl)
 
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
@@ -21,11 +21,13 @@ export async function baseFetch<T>(input: string, options: BaseFetchOptions = {}
   }
 
   try {
+    const hasBody = body !== undefined
+
     const response = await fetch(url.toString(), {
       ...requestInit,
       signal: controller.signal,
       headers: {
-        'Content-Type': 'application/json',
+        ...(hasBody ? { 'Content-Type': 'application/json' } : {}),
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...headers,
       },
