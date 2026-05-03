@@ -5,11 +5,11 @@ import {
   Navigate,
   RouterProvider,
 } from '@tanstack/react-router'
-import { CollectionsPage } from '@/pages/collections-page/ui/collections-page'
-import { FavoritesPage } from '@/pages/favorites-page/ui/favorites-page'
+import { CollectionsPage } from '@/pages/CollectionsPage/ui/CollectionsPage'
+import { FavoritesPage } from '@/pages/FavoritesPage/ui/FavoritesPage'
 import { HomePage } from '@/pages/HomePage/ui/HomePage'
-import { MemeDetailsPage } from '@/pages/meme-details-page/ui/meme-details-page'
-import { SlangPage } from '@/pages/slang-page/ui/slang-page'
+import { MemeDetailsPage } from '@/pages/MemeDetailsPage/ui/MemeDetailsPage'
+import { SlangPage } from '@/pages/SlangPage/ui/SlangPage'
 import { ROUTES } from '@/shared/config/routes'
 import { AppLayout } from '@/shared/ui/AppLayout'
 
