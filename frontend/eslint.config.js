@@ -2,7 +2,6 @@ import antfu from '@antfu/eslint-config'
 import eslintConfigPrettier from 'eslint-config-prettier/flat'
 import reactPlugin from 'eslint-plugin-react'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
-import tailwindcssPlugin from 'eslint-plugin-tailwindcss'
 
 export default antfu(
   {
@@ -116,14 +115,6 @@ export default antfu(
       ],
       'react/no-array-index-key': 'warn',
       'react/prop-types': 'off', // если проект на TS
-    },
-  },
-
-  // Tailwind
-  ...tailwindcssPlugin.configs['flat/recommended'],
-  {
-    rules: {
-      'tailwindcss/no-custom-classname': 'off',
     },
   },
 
