@@ -1,0 +1,25 @@
+.meme-details-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.meme-details-page__panel {
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
+
+.meme-details-page__title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 6vw, 4.6rem);
+  line-height: 0.95;
+}
+
+.meme-details-page__text-muted {
+  color: var(--muted);
+}
