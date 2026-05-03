@@ -1,9 +1,32 @@
+import { useEffect } from 'react'
+import { fetchMemes, selectMemesStatus } from '@/entities/meme'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks'
+import { MemeFeed } from '@/widgets/MemeFeed'
+import styles from './FavoritesPage.module.css'
+
 export function FavoritesPage() {
+  const dispatch = useAppDispatch()
+  const memesStatus = useAppSelector(selectMemesStatus)
+  const favorites = useAppSelector(state => state.favorites.items)
+  const memes = useAppSelector(state => state.memes.items.filter(meme => favorites.includes(meme.id)))
+
+  useEffect(() => {
+    if (memesStatus === 'idle') {
+      dispatch(fetchMemes())
+    }
+  }, [dispatch, memesStatus])
+
   return (
-    <div>
-      <h1>
-        Favorites Page
-      </h1>
+    <div className={styles['favorites-page']}>
+      <section className={styles['favorites-page__hero']}>
+        <h1 className={styles['favorites-page__title']}>
+          Избранные мемы
+        </h1>
+      </section>
+      <MemeFeed
+        memes={memes}
+        title="Ваше избранное"
+      />
     </div>
   )
 }
