@@ -21,7 +21,7 @@ export const collectionApiService = {
   toggleCollectionMeme(payload: ToggleCollectionMemeRequest): Promise<CollectionItem> {
     return makeRequest<CollectionItem>({
       url: `${ENDPOINTS.COLLECTION}/${payload.collectionId}/toggle-meme`,
-      method: 'POST',
+      method: 'PATCH',
       data: { memeId: payload.memeId },
     })
   },

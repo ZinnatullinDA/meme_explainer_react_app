@@ -37,14 +37,14 @@ export const memeApiService = {
 
   fetchSlangMemes(): Promise<Meme[]> {
     return makeRequest<Meme[]>({
-      url: ENDPOINTS.SLANG,
+      url: ENDPOINTS.SLANG_MEMES,
       method: 'GET',
     })
   },
 
   generateSlangMeme(payload: { term: string }): Promise<{ explanation: ExplanationItem; meme: Meme }> {
     return makeRequest<{ explanation: ExplanationItem; meme: Meme }>({
-      url: `${ENDPOINTS.SLANG}/explain`,
+      url: ENDPOINTS.SLANG_EXPLAIN,
       method: 'POST',
       data: payload,
       timeout: 30000,
