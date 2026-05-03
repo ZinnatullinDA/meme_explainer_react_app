@@ -1,8 +1,86 @@
 {
-  "collections": [],
-  "explanations": [],
-  "favorites": [],
+  "collections": [
+    {
+      "id": "collection-1777843638009-3hwxon",
+      "name": "Уфимский сленг",
+      "description": "Здесь локальный сленг города",
+      "memeIds": ["slang-что-значит-сленг-айда-в-уфе-1777843362206"],
+      "updatedAt": "2026-05-03T21:33:25.798Z"
+    }
+  ],
+  "explanations": [
+    {
+      "content": "Фраза «Айда в Уфе» используется в шутливом контексте, когда кто-то предлагает или намекает на поездку или перемещение в город Уфу. Обычно употребляется в ироничном или юмористическом ключе, чтобы подчеркнуть неожиданность или абсурдность предложения.",
+      "id": "explanation-1777843799346-lguwj6",
+      "memeId": "slang-фраза-айда-в-уфе-1777843799346",
+      "updatedAt": "2026-05-03T21:29:59.346Z"
+    },
+    {
+      "content": "Фраза 'Айда' в Уфе используется в значении 'давай', 'пойдем', 'начнем'. Это разговорное выражение, которое часто употребляется в молодежной среде и в повседневной жизни горожан. Обычно звучит как призыв к действию или началу какого-то мероприятия.",
+      "id": "explanation-1777843362206-oed3gp",
+      "memeId": "slang-что-значит-сленг-айда-в-уфе-1777843362206",
+      "updatedAt": "2026-05-03T21:22:42.206Z"
+    },
+    {
+      "content": "Фраза 'плюс вайб' означает позитивную атмосферу, настроение или энергию. Обычно используется в социальных сетях, мессенджерах и на форумах, когда человек хочет выразить одобрение или поддержать приятное настроение. Обычно применяется в комментариях, отзывах или при общении с друзьями.",
+      "id": "explanation-1777843264959-km3cce",
+      "memeId": "slang-плюс-вайб-1777843264959",
+      "updatedAt": "2026-05-03T21:21:04.959Z"
+    },
+    {
+      "content": "Слово 'кринж' используется для обозначения чего-то настолько неловкого, смешного или неприятного, что вызывает у наблюдателя физическое отторжение и желание отвернуться. Чаще всего употребляется в интернет-культуре, особенно среди молодежи, для описания ситуаций, видео или действий, которые вызывают чувство стыда за других.",
+      "id": "explanation-1777843241081-kp2lft",
+      "memeId": "slang-это-кринж-1777843241081",
+      "updatedAt": "2026-05-03T21:20:41.081Z"
+    },
+    {
+      "content": "Фраза \"нишевая вещь\" означает что-то, что популярно и востребовано в узком кругу людей, среди определённой аудитории или субкультуры. Обычно используется в интернет-культуре и в повседневной речи, когда говорят о продуктах, услугах, контенте или трендах, которые не привлекают массовую аудиторию, но имеют свою преданную фанатскую базу.",
+      "id": "explanation-1777843212661-1e3w24",
+      "memeId": "slang-нишевая-вещь-1777843212661",
+      "updatedAt": "2026-05-03T21:20:12.661Z"
+    },
+    {
+      "content": "Мем \"Drake Hotline Bling\" основан на танцевальных движениях из клипа канадского рэпера Дрейка. В мемах обычно высмеиваются эти движения или сама песня. В основном используют в ситуациях, когда нужно показать неловкий или смешной танец. Неоднозначным этот мем не является.",
+      "id": "explanation-1777843191842-4iqj5q",
+      "memeId": "181913649",
+      "updatedAt": "2026-05-03T21:19:51.842Z"
+    }
+  ],
+  "favorites": ["slang-что-значит-сленг-айда-в-уфе-1777843362206", "181913649", "slang-плюс-вайб-1777843264959"],
   "history": [],
   "notes": [],
-  "slangMemes": []
+  "slangMemes": [
+    {
+      "explanationSeed": "Фраза 'Айда' в Уфе используется в значении 'давай', 'пойдем', 'начнем'. Это разговорное выражение, которое часто употребляется в молодежной среде и в повседневной жизни горожан. Обычно звучит как призыв к действию или началу какого-то мероприятия.",
+      "id": "slang-что-значит-сленг-айда-в-уфе-1777843362206",
+      "source": "GigaChat slang",
+      "term": "что значит сленг 'Айда' в Уфе",
+      "title": "Сленг 'Айда' в Уфе",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NjAiIGhlaWdodD0iNzIwIiB2aWV3Qm94PSIwIDAgOTYwIDcyMCI+CiAgPHJlY3Qgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI3MjAiIGZpbGw9IiNmZmY4ZWMiLz4KICA8cmVjdCB4PSI3MCIgeT0iODAiIHdpZHRoPSI4MjAiIGhlaWdodD0iNTYwIiByeD0iMzYiIGZpbGw9IiMyNTFiMTQiLz4KICA8dGV4dCB4PSIxMTAiIHk9IjE4NSIgZmlsbD0iI2ZmZjhlYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjU4IiBmb250LXdlaWdodD0iNzAwIj7QodC70LXQvdCzPC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iMzMwIiBmaWxsPSIjZjZjMzVmIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZvbnQtd2VpZ2h0PSI3MDAiPtGH0YLQviDQt9C90LDRh9C40YIg0YHQu9C10L3QsyAn0JDQudC00LAnINCyINCj0YTQtTwvdGV4dD4KICA8dGV4dCB4PSIxMTAiIHk9IjQ0MCIgZmlsbD0iI2ZmZjhlYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4Ij7QntCx0YrRj9GB0L3QtdC90LjQtSDQvtGCIEdpZ2FDaGF0PC90ZXh0Pgo8L3N2Zz4="
+    },
+    {
+      "explanationSeed": "Фраза 'плюс вайб' означает позитивную атмосферу, настроение или энергию. Обычно используется в социальных сетях, мессенджерах и на форумах, когда человек хочет выразить одобрение или поддержать приятное настроение. Обычно применяется в комментариях, отзывах или при общении с друзьями.",
+      "id": "slang-плюс-вайб-1777843264959",
+      "source": "GigaChat slang",
+      "term": "плюс вайб",
+      "title": "Плюс вайб",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NjAiIGhlaWdodD0iNzIwIiB2aWV3Qm94PSIwIDAgOTYwIDcyMCI+CiAgPHJlY3Qgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI3MjAiIGZpbGw9IiNmZmY4ZWMiLz4KICA8cmVjdCB4PSI3MCIgeT0iODAiIHdpZHRoPSI4MjAiIGhlaWdodD0iNTYwIiByeD0iMzYiIGZpbGw9IiMyNTFiMTQiLz4KICA8dGV4dCB4PSIxMTAiIHk9IjE4NSIgZmlsbD0iI2ZmZjhlYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjU4IiBmb250LXdlaWdodD0iNzAwIj7QodC70LXQvdCzPC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iMzMwIiBmaWxsPSIjZjZjMzVmIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZvbnQtd2VpZ2h0PSI3MDAiPtC/0LvRjtGBINCy0LDQudCxPC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iNDQwIiBmaWxsPSIjZmZmOGVjIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzgiPtCe0LHRitGP0YHQvdC10L3QuNC1INC+0YIgR2lnYUNoYXQ8L3RleHQ+Cjwvc3ZnPg=="
+    },
+    {
+      "explanationSeed": "Слово 'кринж' используется для обозначения чего-то настолько неловкого, смешного или неприятного, что вызывает у наблюдателя физическое отторжение и желание отвернуться. Чаще всего употребляется в интернет-культуре, особенно среди молодежи, для описания ситуаций, видео или действий, которые вызывают чувство стыда за других.",
+      "id": "slang-это-кринж-1777843241081",
+      "source": "GigaChat slang",
+      "term": "это кринж",
+      "title": "Кринж",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NjAiIGhlaWdodD0iNzIwIiB2aWV3Qm94PSIwIDAgOTYwIDcyMCI+CiAgPHJlY3Qgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI3MjAiIGZpbGw9IiNmZmY4ZWMiLz4KICA8cmVjdCB4PSI3MCIgeT0iODAiIHdpZHRoPSI4MjAiIGhlaWdodD0iNTYwIiByeD0iMzYiIGZpbGw9IiMyNTFiMTQiLz4KICA8dGV4dCB4PSIxMTAiIHk9IjE4NSIgZmlsbD0iI2ZmZjhlYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjU4IiBmb250LXdlaWdodD0iNzAwIj7QodC70LXQvdCzPC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iMzMwIiBmaWxsPSIjZjZjMzVmIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZvbnQtd2VpZ2h0PSI3MDAiPtGN0YLQviDQutGA0LjQvdC2PC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iNDQwIiBmaWxsPSIjZmZmOGVjIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzgiPtCe0LHRitGP0YHQvdC10L3QuNC1INC+0YIgR2lnYUNoYXQ8L3RleHQ+Cjwvc3ZnPg=="
+    },
+    {
+      "explanationSeed": "Фраза \"нишевая вещь\" означает что-то, что популярно и востребовано в узком кругу людей, среди определённой аудитории или субкультуры. Обычно используется в интернет-культуре и в повседневной речи, когда говорят о продуктах, услугах, контенте или трендах, которые не привлекают массовую аудиторию, но имеют свою преданную фанатскую базу.",
+      "id": "slang-нишевая-вещь-1777843212661",
+      "source": "GigaChat slang",
+      "term": "нишевая вещь",
+      "title": "Нишевая вещь",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NjAiIGhlaWdodD0iNzIwIiB2aWV3Qm94PSIwIDAgOTYwIDcyMCI+CiAgPHJlY3Qgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI3MjAiIGZpbGw9IiNmZmY4ZWMiLz4KICA8cmVjdCB4PSI3MCIgeT0iODAiIHdpZHRoPSI4MjAiIGhlaWdodD0iNTYwIiByeD0iMzYiIGZpbGw9IiMyNTFiMTQiLz4KICA8dGV4dCB4PSIxMTAiIHk9IjE4NSIgZmlsbD0iI2ZmZjhlYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjU4IiBmb250LXdlaWdodD0iNzAwIj7QodC70LXQvdCzPC90ZXh0PgogIDx0ZXh0IGZpbGw9IiNmNmMzNWYiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI2NCIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjExMCIgeT0iMzMwIj7QvdC40YjQtdCy0LDRjyDQstC10YnRjDwvdHNwYW4+PC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iNDUwIiBmaWxsPSIjZmZmOGVjIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzgiPtCe0LHRitGP0YHQvdC10L3QuNC1INC+0YIgR2lnYUNoYXQ8L3RleHQ+Cjwvc3ZnPg=="
+    }
+  ]
 }

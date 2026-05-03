@@ -172,9 +172,7 @@ async function getGigachatAccessToken() {
   })
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to authorize in GigaChat: ${response.status} ${JSON.stringify(response.body)}`,
-    )
+    throw new Error(`Failed to authorize in GigaChat: ${response.status} ${JSON.stringify(response.body)}`)
   }
 
   const payload = response.body
@@ -200,8 +198,7 @@ async function generateExplanationText(title) {
       max_tokens: 220,
       messages: [
         {
-          content:
-            'Ты объясняешь интернет-мемы простым русским языком. Отвечай коротко, по делу, без списков и без дисклеймеров.',
+          content: 'Ты объясняешь интернет-мемы простым русским языком. Отвечай коротко, по делу, без списков и без дисклеймеров.',
           role: 'system',
         },
         {
@@ -222,9 +219,7 @@ async function generateExplanationText(title) {
   })
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to generate explanation in GigaChat: ${response.status} ${JSON.stringify(response.body)}`,
-    )
+    throw new Error(`Failed to generate explanation in GigaChat: ${response.status} ${JSON.stringify(response.body)}`)
   }
 
   const payload = response.body
@@ -261,6 +256,75 @@ function assertHttpImageUrl(url) {
   }
 }
 
+function escapeSvgText(value) {
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+}
+
+function splitLongWord(word, maxLength) {
+  const chars = Array.from(word)
+  const chunks = []
+
+  for (let index = 0; index < chars.length; index += maxLength) {
+    chunks.push(chars.slice(index, index + maxLength).join(''))
+  }
+
+  return chunks
+}
+
+function wrapSvgText(value, maxLength = 18, maxLines = 3) {
+  const words = String(value).trim().split(/\s+/).filter(Boolean)
+  const lines = []
+  let currentLine = ''
+
+  for (const word of words) {
+    const wordChunks = Array.from(word).length > maxLength ? splitLongWord(word, maxLength) : [word]
+
+    for (const chunk of wordChunks) {
+      const nextLine = currentLine ? `${currentLine} ${chunk}` : chunk
+
+      if (Array.from(nextLine).length <= maxLength) {
+        currentLine = nextLine
+        continue
+      }
+
+      if (currentLine) {
+        lines.push(currentLine)
+      }
+
+      currentLine = chunk
+    }
+  }
+
+  if (currentLine) {
+    lines.push(currentLine)
+  }
+
+  if (lines.length <= maxLines) {
+    return lines
+  }
+
+  const visibleLines = lines.slice(0, maxLines)
+  const lastLineChars = Array.from(visibleLines[maxLines - 1])
+  visibleLines[maxLines - 1] = `${lastLineChars.slice(0, maxLength - 1).join('')}...`
+
+  return visibleLines
+}
+
+function isSlangPlaceholderImage(url) {
+  return String(url).startsWith('data:image/svg+xml;base64,')
+}
+
+function refreshSlangPlaceholderImage(meme) {
+  if (!isSlangPlaceholderImage(meme.url)) {
+    return meme
+  }
+
+  return {
+    ...meme,
+    url: createSlangPlaceholderImage(meme.term),
+  }
+}
+
 async function canLoadImage(url) {
   try {
     const response = await requestRaw(url, {
@@ -279,19 +343,24 @@ async function canLoadImage(url) {
 }
 
 function createSlangPlaceholderImage(term) {
-  const escapedTerm = term
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
+  const termLines = wrapSvgText(term)
+  const titleStartY = termLines.length === 1 ? 330 : 295
+  const lineHeight = 78
+  const footerY = titleStartY + termLines.length * lineHeight + 42
+  const termText = termLines
+    .map((line, index) => {
+      const y = titleStartY + index * lineHeight
+      return `<tspan x="110" y="${y}">${escapeSvgText(line)}</tspan>`
+    })
+    .join('')
 
   const svg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="720" viewBox="0 0 960 720">
   <rect width="960" height="720" fill="#fff8ec"/>
   <rect x="70" y="80" width="820" height="560" rx="36" fill="#251b14"/>
   <text x="110" y="185" fill="#fff8ec" font-family="Arial, sans-serif" font-size="58" font-weight="700">Сленг</text>
-  <text x="110" y="330" fill="#f6c35f" font-family="Arial, sans-serif" font-size="72" font-weight="700">${escapedTerm}</text>
-  <text x="110" y="440" fill="#fff8ec" font-family="Arial, sans-serif" font-size="38">Объяснение от GigaChat</text>
+  <text fill="#f6c35f" font-family="Arial, sans-serif" font-size="64" font-weight="700">${termText}</text>
+  <text x="110" y="${footerY}" fill="#fff8ec" font-family="Arial, sans-serif" font-size="38">Объяснение от GigaChat</text>
 </svg>`.trim()
 
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
@@ -326,9 +395,7 @@ async function generateSlangMeme(term) {
   })
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to generate slang explanation in GigaChat: ${response.status} ${JSON.stringify(response.body)}`,
-    )
+    throw new Error(`Failed to generate slang explanation in GigaChat: ${response.status} ${JSON.stringify(response.body)}`)
   }
 
   const content = response.body?.choices?.[0]?.message?.content?.trim()
@@ -348,10 +415,7 @@ async function generateSlangMeme(term) {
 
   return {
     explanation,
-    imageUrl:
-      assertHttpImageUrl(imageUrl) && (await canLoadImage(imageUrl))
-        ? imageUrl
-        : createSlangPlaceholderImage(term),
+    imageUrl: assertHttpImageUrl(imageUrl) && (await canLoadImage(imageUrl)) ? imageUrl : createSlangPlaceholderImage(term),
     title,
   }
 }
@@ -401,7 +465,7 @@ app.get('/api/explanations', async (_request, response) => {
 
 app.get('/api/slang/memes', async (_request, response) => {
   const db = await readDb()
-  response.json(db.slangMemes ?? [])
+  response.json((db.slangMemes ?? []).map(refreshSlangPlaceholderImage))
 })
 
 app.post('/api/slang/explain', async (request, response) => {
@@ -413,22 +477,18 @@ app.post('/api/slang/explain', async (request, response) => {
 
   const normalizedTerm = String(term).trim()
   const currentDb = await readDb()
-  const existingMeme = (currentDb.slangMemes ?? []).find(
-    (item) => item.term.toLowerCase() === normalizedTerm.toLowerCase(),
-  )
+  const existingMeme = (currentDb.slangMemes ?? []).find((item) => item.term.toLowerCase() === normalizedTerm.toLowerCase())
 
   if (existingMeme) {
     const imageIsAvailable = assertHttpImageUrl(existingMeme.url)
       ? await canLoadImage(existingMeme.url)
       : String(existingMeme.url).startsWith('data:image/')
 
-    if (!imageIsAvailable) {
+    if (!imageIsAvailable || isSlangPlaceholderImage(existingMeme.url)) {
       existingMeme.url = createSlangPlaceholderImage(existingMeme.term)
 
       await updateDb((nextDb) => {
-        nextDb.slangMemes = (nextDb.slangMemes ?? []).map((item) =>
-          item.id === existingMeme.id ? existingMeme : item,
-        )
+        nextDb.slangMemes = (nextDb.slangMemes ?? []).map((item) => (item.id === existingMeme.id ? existingMeme : item))
         return nextDb
       })
     }
@@ -474,10 +534,7 @@ app.post('/api/slang/explain', async (request, response) => {
 
     const db = await updateDb((nextDb) => {
       nextDb.slangMemes = [meme, ...(nextDb.slangMemes ?? [])]
-      nextDb.explanations = [
-        explanation,
-        ...nextDb.explanations.filter((item) => item.memeId !== meme.id),
-      ]
+      nextDb.explanations = [explanation, ...nextDb.explanations.filter((item) => item.memeId !== meme.id)]
       return nextDb
     })
 
@@ -506,10 +563,7 @@ app.post('/api/explanations', async (request, response) => {
   }
 
   const db = await updateDb((currentDb) => {
-    currentDb.explanations = [
-      explanation,
-      ...currentDb.explanations.filter((item) => item.memeId !== memeId),
-    ]
+    currentDb.explanations = [explanation, ...currentDb.explanations.filter((item) => item.memeId !== memeId)]
     return currentDb
   })
 
@@ -540,10 +594,7 @@ app.post('/api/explanations/generate', async (request, response) => {
     }
 
     const db = await updateDb((nextDb) => {
-      nextDb.explanations = [
-        explanation,
-        ...nextDb.explanations.filter((item) => item.memeId !== memeId),
-      ]
+      nextDb.explanations = [explanation, ...nextDb.explanations.filter((item) => item.memeId !== memeId)]
       return nextDb
     })
 
@@ -717,9 +768,7 @@ app.patch('/api/collections/:id/toggle-meme', async (request, response) => {
         return item
       }
 
-      const memeIds = item.memeIds.includes(memeId)
-        ? item.memeIds.filter((currentId) => currentId !== memeId)
-        : [...item.memeIds, memeId]
+      const memeIds = item.memeIds.includes(memeId) ? item.memeIds.filter((currentId) => currentId !== memeId) : [...item.memeIds, memeId]
 
       updatedCollection = {
         ...item,
