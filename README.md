@@ -107,6 +107,7 @@ Backend представляет собой Express API с простым JSON-�
 - ESLint - проверка качества кода frontend.
 - Prettier - единое форматирование кода и документации.
 - commitlint - проверка сообщений коммитов по Conventional Commits.
+- Husky - запуск проверок через Git hooks перед коммитами.
 
 ## Реализованные модули
 
