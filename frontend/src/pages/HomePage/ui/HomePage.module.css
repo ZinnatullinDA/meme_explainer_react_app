@@ -34,6 +34,9 @@
 }
 
 .home-page__panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 22px;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);

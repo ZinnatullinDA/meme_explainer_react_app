@@ -39,7 +39,7 @@ export function HomePage() {
 
       {status === 'loading' && (
         <div className={styles['home-page__panel']}>
-          <Spin tip="Загружаем мемы..." />
+          <Spin description="Загружаем мемы..." />
         </div>
       )}
       {status !== 'loading' && (
