@@ -1,14 +1,17 @@
-import { HomeOutlined, StarOutlined, TagsOutlined, UnorderedListOutlined } from '@ant-design/icons'
+import { HomeOutlined, MoonOutlined, StarOutlined, SunOutlined, TagsOutlined, UnorderedListOutlined } from '@ant-design/icons'
 import { Link, Outlet, useLocation } from '@tanstack/react-router'
-import { Button } from 'antd'
+import { Button, Tooltip } from 'antd'
 import { useEffect } from 'react'
-import { APP_NAME } from '@/shared/config/app'
 import { ROUTES } from '@/shared/config/routes'
 import { saveLastMemeListRoute } from '@/shared/lib/meme-list-route'
+import { useThemeMode } from '@/shared/lib/theme-mode'
 import styles from './AppLayout.module.css'
 
 export function AppLayout() {
   const location = useLocation()
+  const { mode, toggleMode } = useThemeMode()
+  const isDarkMode = mode === 'dark'
+  const themeToggleLabel = isDarkMode ? 'Включить светлую тему' : 'Включить темную тему'
   const navItems = [
     { icon: <HomeOutlined />, label: 'Мемы', to: ROUTES.home },
     { icon: <TagsOutlined />, label: 'Сленг', to: ROUTES.slang },
@@ -20,15 +23,16 @@ export function AppLayout() {
     saveLastMemeListRoute(location.pathname)
   }, [location.pathname])
 
+  function handleThemeToggleClick() {
+    toggleMode()
+  }
+
   return (
     <div className={styles['app-layout']}>
       <header className={styles['app-layout__topbar']}>
         <div>
-          <p className={styles['app-layout__eyebrow']}>
-            Explain the joke
-          </p>
           <span className={styles['app-layout__brand']}>
-            {APP_NAME}
+            Meme Explainer
           </span>
         </div>
         <nav className={styles['app-layout__nav']}>
@@ -46,6 +50,15 @@ export function AppLayout() {
               </Button>
             </Link>
           ))}
+          <Tooltip title={themeToggleLabel}>
+            <Button
+              aria-label={themeToggleLabel}
+              icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
+              onClick={handleThemeToggleClick}
+              shape="circle"
+              type="text"
+            />
+          </Tooltip>
         </nav>
       </header>
 

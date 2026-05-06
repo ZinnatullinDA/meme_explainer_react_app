@@ -1,8 +1,6 @@
 :root {
   --bg: #f3efe5;
-  /* --surface: rgba(255, 255, 255, 0.86); */
   --surface: rgba(255, 251, 245, 0.78);
-
   --surface-strong: #ffffff;
   --text: #1f2937;
   --muted: #667085;
@@ -18,16 +16,28 @@
   --display: Inter, 'Segoe UI', Arial, sans-serif;
 }
 
+:root[data-theme='dark'] {
+  --bg: #111827;
+  --surface: rgba(17, 24, 39, 0.86);
+  --surface-strong: #1f2937;
+  --text: #f9fafb;
+  --muted: #a7b0c0;
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #1677ff;
+  --accent-strong: #69b1ff;
+  --accent-soft: rgba(22, 119, 255, 0.18);
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.24);
+}
+
 * {
   box-sizing: border-box;
 }
 
 html {
   min-height: 100%;
-  /* background: linear-gradient(180deg, rgba(22, 119, 255, 0.06), transparent 260px), var(--bg); */
   background:
-    radial-gradient(circle at top left, rgba(235, 124, 84, 0.16), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(221, 189, 82, 0.18), transparent 24%), var(--bg);
+    radial-gradient(circle at top left, rgba(22, 119, 255, 0.1), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(250, 173, 20, 0.1), transparent 24%), var(--bg);
   background-attachment: fixed;
 }
 
@@ -37,9 +47,12 @@ body {
   color: var(--text);
   font-family: var(--sans);
   background:
-    radial-gradient(circle at top left, rgba(235, 124, 84, 0.16), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(221, 189, 82, 0.18), transparent 24%), var(--bg);
+    radial-gradient(circle at top left, rgba(22, 119, 255, 0.1), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(250, 173, 20, 0.1), transparent 24%), var(--bg);
   background-attachment: fixed;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 a {

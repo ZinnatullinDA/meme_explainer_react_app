@@ -17,6 +17,12 @@
   ],
   "explanations": [
     {
+      "content": "Гринфлаг (зелёный флаг) и редфлаг (красный флаг) — это интернет-сленг, обозначающий, соответственно, положительное и отрицательное впечатление о человеке или ситуации. Например, «гринфлаг» используется, когда собеседник производит хорошее впечатление, вызывает симпатию, доверие или одобрение. «Редфлаг» — наоборот, сигнализирует о негативном отношении, вызывает сомнения или тревогу. Эти термины пришли из западной интернет-культуры и активно используются в обсуждениях отношений, знакомств и личных впечатлений.",
+      "id": "explanation-1778093508119-oqe0it",
+      "memeId": "slang-гринфлаг-и-редфлаг-1778093508119",
+      "updatedAt": "2026-05-06T18:51:48.119Z"
+    },
+    {
       "content": "Мем \"Mother Ignoring Kid Drowning In A Pool\" изображает маму, которая игнорирует ребёнка, якобы тонущего в бассейне. Шутка заключается в том, что мама слишком увлечена своим занятием (чаще всего телефоном) и не замечает проблемы. Мем используют, чтобы высмеивать людей, чрезмерно поглощённых гаджетами и невнимательных к происходящему вокруг.",
       "id": "explanation-1778085186456-u899zp",
       "memeId": "252758727",
@@ -112,6 +118,14 @@
     }
   ],
   "slangMemes": [
+    {
+      "explanationSeed": "Гринфлаг (зелёный флаг) и редфлаг (красный флаг) — это интернет-сленг, обозначающий, соответственно, положительное и отрицательное впечатление о человеке или ситуации. Например, «гринфлаг» используется, когда собеседник производит хорошее впечатление, вызывает симпатию, доверие или одобрение. «Редфлаг» — наоборот, сигнализирует о негативном отношении, вызывает сомнения или тревогу. Эти термины пришли из западной интернет-культуры и активно используются в обсуждениях отношений, знакомств и личных впечатлений.",
+      "id": "slang-гринфлаг-и-редфлаг-1778093508119",
+      "source": "GigaChat slang",
+      "term": "Гринфлаг и редфлаг",
+      "title": "Гринфлаг и редфлаг",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NjAiIGhlaWdodD0iNzIwIiB2aWV3Qm94PSIwIDAgOTYwIDcyMCI+CiAgPHJlY3Qgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI3MjAiIGZpbGw9IiNmZmY4ZWMiLz4KICA8cmVjdCB4PSI3MCIgeT0iODAiIHdpZHRoPSI4MjAiIGhlaWdodD0iNTYwIiByeD0iMzYiIGZpbGw9IiMyNTFiMTQiLz4KICA8dGV4dCB4PSIxMTAiIHk9IjE4NSIgZmlsbD0iI2ZmZjhlYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjU4IiBmb250LXdlaWdodD0iNzAwIj7QodC70LXQvdCzPC90ZXh0PgogIDx0ZXh0IGZpbGw9IiNmNmMzNWYiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI2NCIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjExMCIgeT0iMzMwIj7Qk9GA0LjQvdGE0LvQsNCzINC4INGA0LXQtNGE0LvQsNCzPC90c3Bhbj48L3RleHQ+CiAgPHRleHQgeD0iMTEwIiB5PSI0NTAiIGZpbGw9IiNmZmY4ZWMiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzOCI+0J7QsdGK0Y/RgdC90LXQvdC40LUg0L7RgiBHaWdhQ2hhdDwvdGV4dD4KPC9zdmc+"
+    },
     {
       "explanationSeed": "Слово 'байт' в интернет-сленге означает сделать что-то, чтобы вызвать негативную реакцию у другого человека. Обычно используется в контексте троллинга или провокаций. Например, можно сказать: 'Он специально оставил комментарий, чтобы байтануть оппонента.'",
       "id": "slang-байт-1778084348283",
