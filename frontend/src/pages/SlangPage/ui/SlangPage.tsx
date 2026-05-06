@@ -1,4 +1,4 @@
-import type { FormEvent } from 'react'
+import type { ChangeEvent, FormEvent } from 'react'
 import { Alert, Button, Input, Space, Typography } from 'antd'
 import { useEffect, useMemo, useState } from 'react'
 import { upsertExplanation } from '@/entities/explanation'
@@ -24,6 +24,10 @@ export function SlangPage() {
       dispatch(fetchMemes())
     }
   }, [dispatch, memesStatus])
+
+  function handleTermChange(event: ChangeEvent<HTMLInputElement>) {
+    setTerm(event.target.value)
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -59,7 +63,7 @@ export function SlangPage() {
       >
         <Space.Compact className={styles['slang-page__compact']}>
           <Input
-            onChange={event => setTerm(event.target.value)}
+            onChange={handleTermChange}
             placeholder="Например: six seven"
             value={term}
           />

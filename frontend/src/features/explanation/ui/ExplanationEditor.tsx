@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'react'
 import { DeleteOutlined, ReloadOutlined, SaveOutlined } from '@ant-design/icons'
 import { Alert, Button, Card, Input, Space, Typography } from 'antd'
 import { useState } from 'react'
@@ -22,17 +23,44 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
   const [draft, setDraft] = useState({ content: sourceContent, sourceKey })
   const content = draft.sourceKey === sourceKey ? draft.content : sourceContent
 
+  function handleDeleteClick() {
+    if (!activeExplanation) {
+      return
+    }
+
+    setDeletedExplanationId(activeExplanation.id)
+    setDraft({ content: '', sourceKey: `${memeId}:new:` })
+    dispatch(deleteExplanation(activeExplanation.id))
+  }
+
+  function handleContentChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    setDraft({ content: event.target.value, sourceKey })
+  }
+
+  function handleGenerateClick() {
+    dispatch(generateExplanation({ force: true, memeId, title }))
+  }
+
+  function handleSaveClick() {
+    if (!content.trim()) {
+      return
+    }
+
+    if (activeExplanation) {
+      dispatch(updateExplanation({ content, id: activeExplanation.id }))
+      return
+    }
+
+    dispatch(createExplanation({ content, memeId }))
+  }
+
   return (
     <Card
       extra={activeExplanation && (
         <Button
           danger
           icon={<DeleteOutlined />}
-          onClick={() => {
-            setDeletedExplanationId(activeExplanation.id)
-            setDraft({ content: '', sourceKey: `${memeId}:new:` })
-            dispatch(deleteExplanation(activeExplanation.id))
-          }}
+          onClick={handleDeleteClick}
           type="text"
         >
           Удалить
@@ -46,7 +74,7 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
         style={{ width: '100%' }}
       >
         <Input.TextArea
-          onChange={event => setDraft({ content: event.target.value, sourceKey })}
+          onChange={handleContentChange}
           placeholder={placeholder}
           rows={6}
           value={content}
@@ -70,25 +98,14 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
           <Button
             disabled={generationStatus === 'loading'}
             icon={<ReloadOutlined />}
-            onClick={() => dispatch(generateExplanation({ force: true, memeId, title }))}
+            onClick={handleGenerateClick}
           >
             Перегенерировать
           </Button>
 
           <Button
             icon={<SaveOutlined />}
-            onClick={() => {
-              if (!content.trim()) {
-                return
-              }
-
-              if (activeExplanation) {
-                dispatch(updateExplanation({ content, id: activeExplanation.id }))
-                return
-              }
-
-              dispatch(createExplanation({ content, memeId }))
-            }}
+            onClick={handleSaveClick}
             type="primary"
           >
             {activeExplanation ? 'Обновить' : 'Сохранить'}

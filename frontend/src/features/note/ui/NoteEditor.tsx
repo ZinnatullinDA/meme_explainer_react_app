@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'react'
 import { DeleteOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Card, Input, Space } from 'antd'
 import { useState } from 'react'
@@ -18,17 +19,40 @@ export function NoteEditor({ memeId }: NoteEditorProps) {
   const [draft, setDraft] = useState({ content: sourceContent, sourceKey })
   const content = draft.sourceKey === sourceKey ? draft.content : sourceContent
 
+  function handleDeleteClick() {
+    if (!activeNote) {
+      return
+    }
+
+    setDeletedNoteId(activeNote.id)
+    setDraft({ content: '', sourceKey: `${memeId}:new:` })
+    dispatch(deleteNote(activeNote.id))
+  }
+
+  function handleContentChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    setDraft({ content: event.target.value, sourceKey })
+  }
+
+  function handleSaveClick() {
+    if (!content.trim()) {
+      return
+    }
+
+    if (activeNote) {
+      dispatch(updateNote({ content, id: activeNote.id }))
+      return
+    }
+
+    dispatch(createNote({ content, memeId }))
+  }
+
   return (
     <Card
       extra={activeNote && (
         <Button
           danger
           icon={<DeleteOutlined />}
-          onClick={() => {
-            setDeletedNoteId(activeNote.id)
-            setDraft({ content: '', sourceKey: `${memeId}:new:` })
-            dispatch(deleteNote(activeNote.id))
-          }}
+          onClick={handleDeleteClick}
           type="text"
         >
           Удалить
@@ -42,7 +66,7 @@ export function NoteEditor({ memeId }: NoteEditorProps) {
         style={{ width: '100%' }}
       >
         <Input.TextArea
-          onChange={event => setDraft({ content: event.target.value, sourceKey })}
+          onChange={handleContentChange}
           placeholder="Сюда можно записать контекст, идею или собственную интерпретацию."
           rows={5}
           value={content}
@@ -50,18 +74,7 @@ export function NoteEditor({ memeId }: NoteEditorProps) {
 
         <Button
           icon={<SaveOutlined />}
-          onClick={() => {
-            if (!content.trim()) {
-              return
-            }
-
-            if (activeNote) {
-              dispatch(updateNote({ content, id: activeNote.id }))
-              return
-            }
-
-            dispatch(createNote({ content, memeId }))
-          }}
+          onClick={handleSaveClick}
           type="primary"
         >
           {activeNote ? 'Обновить заметку' : 'Сохранить заметку'}

@@ -1,3 +1,5 @@
+import type { CheckboxChangeEvent } from 'antd/es/checkbox'
+import type { ChangeEvent } from 'react'
 import { Checkbox, Input, Select } from 'antd'
 import { useEffect, useState } from 'react'
 import { fetchMemes, fetchMemesBySubreddit, fetchRandomMemes } from '@/entities/meme'
@@ -16,6 +18,30 @@ export function FilterMeme() {
     dispatch(setSearch(debouncedSearch))
   }, [debouncedSearch, dispatch])
 
+  function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
+    setSearchValue(event.target.value)
+  }
+
+  function handleSubredditChange(value: string) {
+    dispatch(setSubreddit(value))
+
+    if (value === 'all') {
+      dispatch(fetchMemes())
+      return
+    }
+
+    if (value === 'random') {
+      dispatch(fetchRandomMemes())
+      return
+    }
+
+    dispatch(fetchMemesBySubreddit(value))
+  }
+
+  function handleOnlyFavoritesChange(event: CheckboxChangeEvent) {
+    dispatch(setOnlyFavorites(event.target.checked))
+  }
+
   return (
     <section className={styles['meme-filters']}>
       <div className={styles['meme-filters__row']}>
@@ -25,7 +51,7 @@ export function FilterMeme() {
           </span>
           <Input.Search
             allowClear
-            onChange={event => setSearchValue(event.target.value)}
+            onChange={handleSearchChange}
             placeholder="Например, Drake"
             value={searchValue}
           />
@@ -36,27 +62,13 @@ export function FilterMeme() {
             Источник
           </span>
           <Select
-            onChange={(value) => {
-              dispatch(setSubreddit(value))
-
-              if (value === 'all') {
-                dispatch(fetchMemes())
-                return
-              }
-
-              if (value === 'random') {
-                dispatch(fetchRandomMemes())
-                return
-              }
-
-              dispatch(fetchMemesBySubreddit(value))
-            }}
+            onChange={handleSubredditChange}
             options={[
               { label: 'Все мемы', value: 'all' },
               { label: 'Случайный мем', value: 'random' },
-              { label: 'r/memes', value: 'memes' },
-              { label: 'r/dankmemes', value: 'dankmemes' },
-              { label: 'r/ProgrammerHumor', value: 'ProgrammerHumor' },
+              { label: 'memes', value: 'memes' },
+              { label: 'dankmemes', value: 'dankmemes' },
+              { label: 'ProgrammerHumor', value: 'ProgrammerHumor' },
             ]}
             value={subreddit}
           />
@@ -65,7 +77,7 @@ export function FilterMeme() {
 
       <Checkbox
         checked={onlyFavorites}
-        onChange={event => dispatch(setOnlyFavorites(event.target.checked))}
+        onChange={handleOnlyFavoritesChange}
       >
         Показывать только избранное
       </Checkbox>
