@@ -3,5 +3,15 @@
   z-index: 2;
   top: 34px;
   right: 34px;
+  border: 0;
   box-shadow: 0 10px 30px rgba(95, 57, 27, 0.16);
+}
+
+.favorite-button--icon:hover,
+.favorite-button--icon:focus-visible {
+  border: 0;
+}
+
+.favorite-button--active :global(.anticon) {
+  color: #f6c343;
 }

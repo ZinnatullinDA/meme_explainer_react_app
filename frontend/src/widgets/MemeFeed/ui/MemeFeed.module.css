@@ -20,6 +20,8 @@
 .meme-feed__card {
   position: relative;
   box-shadow: var(--shadow);
+  height: 342px;
+  width: 307px;
 }
 
 .meme-feed__card-link {

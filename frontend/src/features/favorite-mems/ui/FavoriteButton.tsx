@@ -28,7 +28,10 @@ export function FavoriteButton({ memeId, variant = 'default' }: FavoriteButtonPr
       <Tooltip title={label}>
         <Button
           aria-label={label}
-          className={styles['favorite-button--icon']}
+          className={[
+            styles['favorite-button--icon'],
+            isFavorite ? styles['favorite-button--active'] : '',
+          ].join(' ')}
           icon={isFavorite ? <StarFilled /> : <StarOutlined />}
           onClick={handleClick}
           shape="circle"
@@ -40,6 +43,7 @@ export function FavoriteButton({ memeId, variant = 'default' }: FavoriteButtonPr
 
   return (
     <Button
+      className={isFavorite ? styles['favorite-button--active'] : undefined}
       icon={isFavorite ? <StarFilled /> : <StarOutlined />}
       onClick={handleClick}
       type={isFavorite ? 'primary' : 'default'}
