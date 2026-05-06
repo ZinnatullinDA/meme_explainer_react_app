@@ -1,9 +1,10 @@
 import type { ChangeEvent } from 'react'
 import { DeleteOutlined, SaveOutlined } from '@ant-design/icons'
-import { Button, Card, Input, Space } from 'antd'
+import { Button, Card, Input } from 'antd'
 import { useState } from 'react'
 import { createNote, deleteNote, updateNote } from '@/entities/note'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks'
+import styles from './NoteEditor.module.css'
 
 interface NoteEditorProps {
   memeId: string
@@ -60,11 +61,7 @@ export function NoteEditor({ memeId }: NoteEditorProps) {
       )}
       title="Личные заметки"
     >
-      <Space
-        direction="vertical"
-        size="middle"
-        style={{ width: '100%' }}
-      >
+      <div className={styles['note-editor']}>
         <Input.TextArea
           onChange={handleContentChange}
           placeholder="Сюда можно записать контекст, идею или собственную интерпретацию."
@@ -79,7 +76,7 @@ export function NoteEditor({ memeId }: NoteEditorProps) {
         >
           {activeNote ? 'Обновить заметку' : 'Сохранить заметку'}
         </Button>
-      </Space>
+      </div>
     </Card>
   )
 }

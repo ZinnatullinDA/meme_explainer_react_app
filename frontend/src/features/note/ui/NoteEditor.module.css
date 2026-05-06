@@ -1,3 +1,10 @@
 .note-editor {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.note-editor > button {
+  align-self: center;
 }

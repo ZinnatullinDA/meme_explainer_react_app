@@ -1,9 +1,10 @@
 import type { ChangeEvent } from 'react'
 import { DeleteOutlined, ReloadOutlined, SaveOutlined } from '@ant-design/icons'
-import { Alert, Button, Card, Input, Space, Typography } from 'antd'
+import { Alert, Button, Card, Input, Typography } from 'antd'
 import { useState } from 'react'
 import { createExplanation, deleteExplanation, generateExplanation, updateExplanation } from '@/entities/explanation'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks'
+import styles from './ExplanationEditor.module.css'
 
 interface ExplanationEditorProps {
   memeId: string
@@ -68,11 +69,7 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
       )}
       title="Объяснение"
     >
-      <Space
-        direction="vertical"
-        size="middle"
-        style={{ width: '100%' }}
-      >
+      <div className={styles['explanation-editor']}>
         <Input.TextArea
           onChange={handleContentChange}
           placeholder={placeholder}
@@ -94,7 +91,7 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
           />
         )}
 
-        <Space wrap>
+        <div className={styles['explanation-editor__actions']}>
           <Button
             disabled={generationStatus === 'loading'}
             icon={<ReloadOutlined />}
@@ -110,8 +107,8 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
           >
             {activeExplanation ? 'Обновить' : 'Сохранить'}
           </Button>
-        </Space>
-      </Space>
+        </div>
+      </div>
     </Card>
   )
 }
