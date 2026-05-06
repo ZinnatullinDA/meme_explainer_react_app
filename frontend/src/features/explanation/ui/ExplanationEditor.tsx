@@ -14,11 +14,12 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
   const explanation = useAppSelector(state => state.explanations.items.find(item => item.memeId === memeId))
   const generationError = useAppSelector(state => state.explanations.generationErrorsByMeme[memeId])
   const generationStatus = useAppSelector(state => state.explanations.generationStatusByMeme[memeId] ?? 'idle')
-  const sourceContent = explanation?.content ?? placeholder
-  const [draft, setDraft] = useState({ content: sourceContent, source: sourceContent })
-  const content = draft.source !== sourceContent && draft.content === draft.source
-    ? sourceContent
-    : draft.content
+  const [deletedExplanationId, setDeletedExplanationId] = useState<string | null>(null)
+  const activeExplanation = explanation?.id === deletedExplanationId ? undefined : explanation
+  const sourceContent = activeExplanation?.content ?? ''
+  const sourceKey = `${memeId}:${activeExplanation?.id ?? 'new'}:${sourceContent}`
+  const [draft, setDraft] = useState({ content: sourceContent, sourceKey })
+  const content = draft.sourceKey === sourceKey ? draft.content : sourceContent
 
   return (
     <section className={styles['explanation-editor']}>
@@ -26,10 +27,14 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
         <h3 className={styles['explanation-editor__title']}>
           Объяснение
         </h3>
-        {explanation && (
+        {activeExplanation && (
           <button
             className={styles['explanation-editor__link-button']}
-            onClick={() => dispatch(deleteExplanation(explanation.id))}
+            onClick={() => {
+              setDeletedExplanationId(activeExplanation.id)
+              setDraft({ content: '', sourceKey: `${memeId}:new:` })
+              dispatch(deleteExplanation(activeExplanation.id))
+            }}
             type="button"
           >
             Удалить
@@ -39,7 +44,7 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
 
       <textarea
         className={styles['explanation-editor__textarea']}
-        onChange={event => setDraft({ content: event.target.value, source: sourceContent })}
+        onChange={event => setDraft({ content: event.target.value, sourceKey })}
         placeholder={placeholder}
         rows={6}
         value={content}
@@ -74,8 +79,8 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
               return
             }
 
-            if (explanation) {
-              dispatch(updateExplanation({ content, id: explanation.id }))
+            if (activeExplanation) {
+              dispatch(updateExplanation({ content, id: activeExplanation.id }))
               return
             }
 
@@ -83,7 +88,7 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
           }}
           type="button"
         >
-          {explanation ? 'Обновить объяснение' : 'Сохранить объяснение'}
+          {activeExplanation ? 'Обновить объяснение' : 'Сохранить объяснение'}
         </button>
       </div>
     </section>

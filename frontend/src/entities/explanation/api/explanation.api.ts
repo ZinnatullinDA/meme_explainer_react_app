@@ -39,10 +39,12 @@ export const explanationApiService = {
     })
   },
 
-  deleteExplanation(id: string): Promise<string> {
-    return makeRequest<string>({
+  async deleteExplanation(id: string): Promise<string> {
+    await makeRequest<void>({
       url: `${ENDPOINTS.EXPLANATION}/${id}`,
       method: 'DELETE',
     })
+
+    return id
   },
 }

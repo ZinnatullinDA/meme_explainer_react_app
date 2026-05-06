@@ -21,15 +21,17 @@ export const noteApiService = {
   updateNote(payload: UpdateNoteRequest): Promise<NoteItem> {
     return makeRequest<NoteItem>({
       url: `${ENDPOINTS.NOTE}/${payload.id}`,
-      method: 'PUT',
+      method: 'PATCH',
       data: payload,
     })
   },
 
-  deleteNote(id: string): Promise<string> {
-    return makeRequest<string>({
+  async deleteNote(id: string): Promise<string> {
+    await makeRequest<void>({
       url: `${ENDPOINTS.NOTE}/${id}`,
       method: 'DELETE',
     })
+
+    return id
   },
 }

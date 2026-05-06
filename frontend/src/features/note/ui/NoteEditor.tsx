@@ -10,7 +10,12 @@ interface NoteEditorProps {
 export function NoteEditor({ memeId }: NoteEditorProps) {
   const dispatch = useAppDispatch()
   const note = useAppSelector(state => state.notes.items.find(item => item.memeId === memeId))
-  const [content, setContent] = useState(note?.content ?? '')
+  const [deletedNoteId, setDeletedNoteId] = useState<string | null>(null)
+  const activeNote = note?.id === deletedNoteId ? undefined : note
+  const sourceContent = activeNote?.content ?? ''
+  const sourceKey = `${memeId}:${activeNote?.id ?? 'new'}:${sourceContent}`
+  const [draft, setDraft] = useState({ content: sourceContent, sourceKey })
+  const content = draft.sourceKey === sourceKey ? draft.content : sourceContent
 
   return (
     <section className={styles['note-editor']}>
@@ -18,10 +23,14 @@ export function NoteEditor({ memeId }: NoteEditorProps) {
         <h3 className={styles['note-editor__title']}>
           Личные заметки
         </h3>
-        {note && (
+        {activeNote && (
           <button
             className={styles['note-editor__link-button']}
-            onClick={() => dispatch(deleteNote(note.id))}
+            onClick={() => {
+              setDeletedNoteId(activeNote.id)
+              setDraft({ content: '', sourceKey: `${memeId}:new:` })
+              dispatch(deleteNote(activeNote.id))
+            }}
             type="button"
           >
             Удалить
@@ -31,7 +40,7 @@ export function NoteEditor({ memeId }: NoteEditorProps) {
 
       <textarea
         className={styles['note-editor__textarea']}
-        onChange={event => setContent(event.target.value)}
+        onChange={event => setDraft({ content: event.target.value, sourceKey })}
         placeholder="Сюда можно записать контекст, идею или собственную интерпретацию."
         rows={5}
         value={content}
@@ -44,8 +53,8 @@ export function NoteEditor({ memeId }: NoteEditorProps) {
             return
           }
 
-          if (note) {
-            dispatch(updateNote({ content, id: note.id }))
+          if (activeNote) {
+            dispatch(updateNote({ content, id: activeNote.id }))
             return
           }
 
@@ -53,7 +62,7 @@ export function NoteEditor({ memeId }: NoteEditorProps) {
         }}
         type="button"
       >
-        {note ? 'Обновить заметку' : 'Сохранить заметку'}
+        {activeNote ? 'Обновить заметку' : 'Сохранить заметку'}
       </button>
     </section>
   )

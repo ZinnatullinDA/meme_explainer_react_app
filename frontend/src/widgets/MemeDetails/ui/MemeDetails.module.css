@@ -37,6 +37,7 @@
 .meme-details__actions {
   display: flex;
   gap: 16px;
+  margin-bottom: 16px;
 }
 
 .meme-details__button {
