@@ -99,11 +99,13 @@ export function MemeDetails({ meme }: MemeDetailsProps) {
           </Link>
         </Space>
 
-        <Image
-          alt={meme.title}
-          className={styles['meme-details__image']}
-          src={meme.url}
-        />
+        <div className={styles['meme-details__image-wrap']}>
+          <Image
+            alt={meme.title}
+            className={styles['meme-details__image']}
+            src={meme.url}
+          />
+        </div>
       </Card>
 
       <div className={styles['meme-details__side']}>
