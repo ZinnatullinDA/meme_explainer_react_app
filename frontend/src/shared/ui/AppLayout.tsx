@@ -1,4 +1,6 @@
+import { HomeOutlined, StarOutlined, TagsOutlined, UnorderedListOutlined } from '@ant-design/icons'
 import { Link, Outlet, useLocation } from '@tanstack/react-router'
+import { Button } from 'antd'
 import { useEffect } from 'react'
 import { APP_NAME } from '@/shared/config/app'
 import { ROUTES } from '@/shared/config/routes'
@@ -7,6 +9,12 @@ import styles from './AppLayout.module.css'
 
 export function AppLayout() {
   const location = useLocation()
+  const navItems = [
+    { icon: <HomeOutlined />, label: 'Мемы', to: ROUTES.home },
+    { icon: <TagsOutlined />, label: 'Сленг', to: ROUTES.slang },
+    { icon: <StarOutlined />, label: 'Избранное', to: ROUTES.favorites },
+    { icon: <UnorderedListOutlined />, label: 'Подборки', to: ROUTES.collections },
+  ]
 
   useEffect(() => {
     saveLastMemeListRoute(location.pathname)
@@ -24,35 +32,20 @@ export function AppLayout() {
           </span>
         </div>
         <nav className={styles['app-layout__nav']}>
-          <Link
-            activeOptions={{ exact: true }}
-            activeProps={{ className: `${styles['app-layout__nav-link']} ${styles['app-layout__nav-link--active']}` }}
-            className={styles['app-layout__nav-link']}
-            to={ROUTES.home}
-          >
-            Мемы
-          </Link>
-          <Link
-            activeProps={{ className: `${styles['app-layout__nav-link']} ${styles['app-layout__nav-link--active']}` }}
-            className={styles['app-layout__nav-link']}
-            to={ROUTES.slang}
-          >
-            Сленг
-          </Link>
-          <Link
-            activeProps={{ className: `${styles['app-layout__nav-link']} ${styles['app-layout__nav-link--active']}` }}
-            className={styles['app-layout__nav-link']}
-            to={ROUTES.favorites}
-          >
-            Избранное
-          </Link>
-          <Link
-            activeProps={{ className: `${styles['app-layout__nav-link']} ${styles['app-layout__nav-link--active']}` }}
-            className={styles['app-layout__nav-link']}
-            to={ROUTES.collections}
-          >
-            Подборки
-          </Link>
+          {navItems.map(item => (
+            <Link
+              activeOptions={item.to === ROUTES.home ? { exact: true } : undefined}
+              key={item.to}
+              to={item.to}
+            >
+              <Button
+                icon={item.icon}
+                type={location.pathname === item.to ? 'primary' : 'text'}
+              >
+                {item.label}
+              </Button>
+            </Link>
+          ))}
         </nav>
       </header>
 

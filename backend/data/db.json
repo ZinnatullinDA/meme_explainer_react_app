@@ -4,13 +4,23 @@
       "id": "collection-1777843638009-3hwxon",
       "name": "Уфимский сленг",
       "description": "Здесь локальный сленг города",
-      "memeIds": [
-        "slang-что-значит-сленг-айда-в-уфе-1777843362206"
-      ],
+      "memeIds": ["slang-что-значит-сленг-айда-в-уфе-1777843362206"],
       "updatedAt": "2026-05-03T21:33:25.798Z"
     }
   ],
   "explanations": [
+    {
+      "content": "Мем \"Mother Ignoring Kid Drowning In A Pool\" изображает маму, которая игнорирует ребёнка, якобы тонущего в бассейне. Шутка заключается в том, что мама слишком увлечена своим занятием (чаще всего телефоном) и не замечает проблемы. Мем используют, чтобы высмеивать людей, чрезмерно поглощённых гаджетами и невнимательных к происходящему вокруг.",
+      "id": "explanation-1778085186456-u899zp",
+      "memeId": "252758727",
+      "updatedAt": "2026-05-06T16:33:06.456Z"
+    },
+    {
+      "content": "Слово 'байт' в интернет-сленге означает сделать что-то, чтобы вызвать негативную реакцию у другого человека. Обычно используется в контексте троллинга или провокаций. Например, можно сказать: 'Он специально оставил комментарий, чтобы байтануть оппонента.'",
+      "id": "explanation-1778084348284-hehdt2",
+      "memeId": "slang-байт-1778084348283",
+      "updatedAt": "2026-05-06T16:19:08.284Z"
+    },
     {
       "content": "Мем \"Distracted Boyfriend\" изображает парня, который идет с девушкой, но смотрит на другую женщину. Шутка заключается в том, что кто-то физически присутствует с одним человеком, но мыслями или интересами отвлекается на другого. Мем используют, чтобы показать раздвоенность внимания, предательство или измену. Иногда его воспринимают неоднозначно, считая, что парень просто оценивает ситуацию или задумался, а не изменяет специально.",
       "id": "explanation-1778075944853-xsgjdp",
@@ -72,11 +82,7 @@
       "updatedAt": "2026-05-03T21:19:51.842Z"
     }
   ],
-  "favorites": [
-    "slang-что-значит-сленг-айда-в-уфе-1777843362206",
-    "181913649",
-    "slang-плюс-вайб-1777843264959"
-  ],
+  "favorites": ["252758727", "slang-что-значит-сленг-айда-в-уфе-1777843362206", "181913649", "slang-плюс-вайб-1777843264959"],
   "history": [],
   "notes": [
     {
@@ -87,6 +93,14 @@
     }
   ],
   "slangMemes": [
+    {
+      "explanationSeed": "Слово 'байт' в интернет-сленге означает сделать что-то, чтобы вызвать негативную реакцию у другого человека. Обычно используется в контексте троллинга или провокаций. Например, можно сказать: 'Он специально оставил комментарий, чтобы байтануть оппонента.'",
+      "id": "slang-байт-1778084348283",
+      "source": "GigaChat slang",
+      "term": "Байт",
+      "title": "Байт",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NjAiIGhlaWdodD0iNzIwIiB2aWV3Qm94PSIwIDAgOTYwIDcyMCI+CiAgPHJlY3Qgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI3MjAiIGZpbGw9IiNmZmY4ZWMiLz4KICA8cmVjdCB4PSI3MCIgeT0iODAiIHdpZHRoPSI4MjAiIGhlaWdodD0iNTYwIiByeD0iMzYiIGZpbGw9IiMyNTFiMTQiLz4KICA8dGV4dCB4PSIxMTAiIHk9IjE4NSIgZmlsbD0iI2ZmZjhlYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjU4IiBmb250LXdlaWdodD0iNzAwIj7QodC70LXQvdCzPC90ZXh0PgogIDx0ZXh0IGZpbGw9IiNmNmMzNWYiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI2NCIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjExMCIgeT0iMzMwIj7QkdCw0LnRgjwvdHNwYW4+PC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iNDUwIiBmaWxsPSIjZmZmOGVjIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzgiPtCe0LHRitGP0YHQvdC10L3QuNC1INC+0YIgR2lnYUNoYXQ8L3RleHQ+Cjwvc3ZnPg=="
+    },
     {
       "explanationSeed": "Фраза 'Айда' в Уфе используется в значении 'давай', 'пойдем', 'начнем'. Это разговорное выражение, которое часто употребляется в молодежной среде и в повседневной жизни горожан. Обычно звучит как призыв к действию или началу какого-то мероприятия.",
       "id": "slang-что-значит-сленг-айда-в-уфе-1777843362206",

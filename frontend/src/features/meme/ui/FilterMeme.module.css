@@ -26,11 +26,6 @@
 
 .meme-filters__input {
   width: 100%;
-  padding: 14px 16px;
-  border: 1px solid rgba(87, 58, 31, 0.16);
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.76);
-  color: var(--text);
 }
 
 .meme-filters__toggle {

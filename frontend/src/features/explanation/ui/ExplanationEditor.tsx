@@ -1,7 +1,8 @@
+import { DeleteOutlined, ReloadOutlined, SaveOutlined } from '@ant-design/icons'
+import { Alert, Button, Card, Input, Space, Typography } from 'antd'
 import { useState } from 'react'
 import { createExplanation, deleteExplanation, generateExplanation, updateExplanation } from '@/entities/explanation'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks'
-import styles from './ExplanationEditor.module.css'
 
 interface ExplanationEditorProps {
   memeId: string
@@ -22,75 +23,78 @@ export function ExplanationEditor({ memeId, placeholder, title }: ExplanationEdi
   const content = draft.sourceKey === sourceKey ? draft.content : sourceContent
 
   return (
-    <section className={styles['explanation-editor']}>
-      <div className={styles['explanation-editor__heading']}>
-        <h3 className={styles['explanation-editor__title']}>
-          Объяснение
-        </h3>
-        {activeExplanation && (
-          <button
-            className={styles['explanation-editor__link-button']}
-            onClick={() => {
-              setDeletedExplanationId(activeExplanation.id)
-              setDraft({ content: '', sourceKey: `${memeId}:new:` })
-              dispatch(deleteExplanation(activeExplanation.id))
-            }}
-            type="button"
-          >
-            Удалить
-          </button>
-        )}
-      </div>
-
-      <textarea
-        className={styles['explanation-editor__textarea']}
-        onChange={event => setDraft({ content: event.target.value, sourceKey })}
-        placeholder={placeholder}
-        rows={6}
-        value={content}
-      />
-
-      {generationStatus === 'loading' && (
-        <p className={styles['explanation-editor__text-muted']}>
-          Объяснение генерируется через GigaChat...
-        </p>
-      )}
-
-      {generationError && (
-        <p className={styles['explanation-editor__text-muted']}>
-          {generationError}
-        </p>
-      )}
-
-      <div className={styles['explanation-editor__actions']}>
-        <button
-          className={`${styles['explanation-editor__button']} ${styles['explanation-editor__button--ghost']}`}
-          disabled={generationStatus === 'loading'}
-          onClick={() => dispatch(generateExplanation({ force: true, memeId, title }))}
-          type="button"
-        >
-          Перегенерировать объяснение
-        </button>
-
-        <button
-          className={`${styles['explanation-editor__button']} ${styles['explanation-editor__button--accent']}`}
+    <Card
+      extra={activeExplanation && (
+        <Button
+          danger
+          icon={<DeleteOutlined />}
           onClick={() => {
-            if (!content.trim()) {
-              return
-            }
-
-            if (activeExplanation) {
-              dispatch(updateExplanation({ content, id: activeExplanation.id }))
-              return
-            }
-
-            dispatch(createExplanation({ content, memeId }))
+            setDeletedExplanationId(activeExplanation.id)
+            setDraft({ content: '', sourceKey: `${memeId}:new:` })
+            dispatch(deleteExplanation(activeExplanation.id))
           }}
-          type="button"
+          type="text"
         >
-          {activeExplanation ? 'Обновить объяснение' : 'Сохранить объяснение'}
-        </button>
-      </div>
-    </section>
+          Удалить
+        </Button>
+      )}
+      title="Объяснение"
+    >
+      <Space
+        direction="vertical"
+        size="middle"
+        style={{ width: '100%' }}
+      >
+        <Input.TextArea
+          onChange={event => setDraft({ content: event.target.value, sourceKey })}
+          placeholder={placeholder}
+          rows={6}
+          value={content}
+        />
+
+        {generationStatus === 'loading' && (
+          <Typography.Text type="secondary">
+            Объяснение генерируется через GigaChat...
+          </Typography.Text>
+        )}
+
+        {generationError && (
+          <Alert
+            message={generationError}
+            showIcon
+            type="warning"
+          />
+        )}
+
+        <Space wrap>
+          <Button
+            disabled={generationStatus === 'loading'}
+            icon={<ReloadOutlined />}
+            onClick={() => dispatch(generateExplanation({ force: true, memeId, title }))}
+          >
+            Перегенерировать
+          </Button>
+
+          <Button
+            icon={<SaveOutlined />}
+            onClick={() => {
+              if (!content.trim()) {
+                return
+              }
+
+              if (activeExplanation) {
+                dispatch(updateExplanation({ content, id: activeExplanation.id }))
+                return
+              }
+
+              dispatch(createExplanation({ content, memeId }))
+            }}
+            type="primary"
+          >
+            {activeExplanation ? 'Обновить' : 'Сохранить'}
+          </Button>
+        </Space>
+      </Space>
+    </Card>
   )
 }

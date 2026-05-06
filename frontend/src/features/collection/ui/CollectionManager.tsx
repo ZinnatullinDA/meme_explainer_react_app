@@ -1,7 +1,8 @@
+import { PlusOutlined } from '@ant-design/icons'
+import { Button, Card, Empty, Input, Space, Tag } from 'antd'
 import { useState } from 'react'
 import { createCollection, toggleCollectionMeme } from '@/entities/collection'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks'
-import styles from './CollectionManager.module.css'
 
 interface CollectionManagerProps {
   memeId: string
@@ -14,58 +15,56 @@ export function CollectionManager({ memeId }: CollectionManagerProps) {
   const [description, setDescription] = useState('')
 
   return (
-    <section className={styles['collection-manager']}>
-      <h3 className={styles['collection-manager__title']}>
-        Подборки
-      </h3>
+    <Card title="Подборки">
+      <Space
+        direction="vertical"
+        size="middle"
+        style={{ width: '100%' }}
+      >
+        <Space.Compact style={{ width: '100%' }}>
+          <Input
+            onChange={event => setName(event.target.value)}
+            placeholder="Название подборки"
+            value={name}
+          />
+          <Input
+            onChange={event => setDescription(event.target.value)}
+            placeholder="Короткое описание"
+            value={description}
+          />
+          <Button
+            icon={<PlusOutlined />}
+            onClick={() => {
+              if (!name.trim()) {
+                return
+              }
 
-      <div className={styles['collection-manager__form']}>
-        <input
-          className={styles['collection-manager__input']}
-          onChange={event => setName(event.target.value)}
-          placeholder="Название подборки"
-          value={name}
-        />
-        <input
-          className={styles['collection-manager__input']}
-          onChange={event => setDescription(event.target.value)}
-          placeholder="Короткое описание"
-          value={description}
-        />
-        <button
-          className={styles['collection-manager__button']}
-          onClick={() => {
-            if (!name.trim()) {
-              return
-            }
-
-            dispatch(createCollection({ description, name }))
-            setDescription('')
-            setName('')
-          }}
-          type="button"
-        >
-          Создать подборку
-        </button>
-      </div>
-
-      <div className={styles['collection-manager__chips']}>
-        {collections.length === 0 && (
-          <p className={styles['collection-manager__text-muted']}>
-            Пока нет подборок. Создайте первую прямо здесь.
-          </p>
-        )}
-        {collections.map(collection => (
-          <button
-            className={collection.memeIds.includes(memeId) ? `${styles['collection-manager__chip']} ${styles['collection-manager__chip--active']}` : styles['collection-manager__chip']}
-            key={collection.id}
-            onClick={() => dispatch(toggleCollectionMeme({ collectionId: collection.id, memeId }))}
-            type="button"
+              dispatch(createCollection({ description, name }))
+              setDescription('')
+              setName('')
+            }}
+            type="primary"
           >
-            {collection.name}
-          </button>
-        ))}
-      </div>
-    </section>
+            Создать
+          </Button>
+        </Space.Compact>
+
+        {collections.length === 0 && (
+          <Empty description="Пока нет подборок" />
+        )}
+
+        <Space wrap>
+          {collections.map(collection => (
+            <Tag.CheckableTag
+              checked={collection.memeIds.includes(memeId)}
+              key={collection.id}
+              onChange={() => dispatch(toggleCollectionMeme({ collectionId: collection.id, memeId }))}
+            >
+              {collection.name}
+            </Tag.CheckableTag>
+          ))}
+        </Space>
+      </Space>
+    </Card>
   )
 }

@@ -1,4 +1,5 @@
 import type { FormEvent } from 'react'
+import { Alert, Button, Input, Space, Typography } from 'antd'
 import { useEffect, useMemo, useState } from 'react'
 import { upsertExplanation } from '@/entities/explanation'
 import { fetchMemes, generateSlangMeme, selectMemes, selectMemesStatus } from '@/entities/meme'
@@ -41,44 +42,44 @@ export function SlangPage() {
   return (
     <div className={styles['slang-page']}>
       <section className={styles['slang-page__hero']}>
-        <h1 className={styles['slang-page__title']}>
+        <Typography.Title
+          className={styles['slang-page__title']}
+          level={1}
+        >
           Сленг
-        </h1>
-        <p className={styles['slang-page__copy']}>
-          Введите мемную фразу или интернет-сленг, а GigaChat соберёт объяснение и картинку в карточку.
-        </p>
+        </Typography.Title>
+        <Typography.Paragraph className={styles['slang-page__copy']}>
+          Введите мемную фразу или интернет-сленг, а GigaChat соберет объяснение и картинку в карточку.
+        </Typography.Paragraph>
       </section>
 
       <form
         className={styles['slang-page__form']}
         onSubmit={handleSubmit}
       >
-        <label className={styles['slang-page__field']}>
-          <span className={styles['slang-page__eyebrow']}>
-            Фраза
-          </span>
-          <input
-            className={styles['slang-page__input']}
+        <Space.Compact className={styles['slang-page__compact']}>
+          <Input
             onChange={event => setTerm(event.target.value)}
             placeholder="Например: six seven"
             value={term}
           />
-        </label>
-        <button
-          className={styles['slang-page__button']}
-          disabled={slangStatus === 'loading' || !term.trim()}
-          type="submit"
-        >
-          {slangStatus === 'loading' ? 'Объясняем...' : 'Объяснить'}
-        </button>
+          <Button
+            disabled={slangStatus === 'loading' || !term.trim()}
+            htmlType="submit"
+            loading={slangStatus === 'loading'}
+            type="primary"
+          >
+            Объяснить
+          </Button>
+        </Space.Compact>
       </form>
 
       {slangError && (
-        <section className={styles['slang-page__panel']}>
-          <p className={styles['slang-page__text-muted']}>
-            {slangError}
-          </p>
-        </section>
+        <Alert
+          message={slangError}
+          showIcon
+          type="warning"
+        />
       )}
 
       <MemeFeed

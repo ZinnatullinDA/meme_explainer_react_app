@@ -6,9 +6,9 @@
 
 .slang-page__hero {
   padding: 24px 36px;
-  border: 1px solid rgba(87, 58, 31, 0.08);
-  border-radius: calc(var(--radius-lg) + 8px);
-  background: linear-gradient(135deg, rgba(255, 248, 236, 0.98), rgba(255, 239, 216, 0.9)), var(--surface-strong);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-strong);
   box-shadow: var(--shadow);
 }
 
@@ -23,8 +23,8 @@
 .slang-page__title {
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(2.5rem, 6vw, 4.6rem);
-  line-height: 0.95;
+  font-size: 2.4rem;
+  line-height: 1.08;
 }
 
 .slang-page__copy,
@@ -48,47 +48,11 @@
 }
 
 .slang-page__form {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 16px;
+  display: block;
 }
 
-.slang-page__field {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.slang-page__input {
+.slang-page__compact {
   width: 100%;
-  padding: 14px 16px;
-  border: 1px solid rgba(87, 58, 31, 0.16);
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.76);
-  color: var(--text);
-}
-
-.slang-page__button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 48px;
-  padding: 12px 16px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--accent);
-  color: #fff7f3;
-  cursor: pointer;
-  transition:
-    transform 0.18s ease,
-    background-color 0.18s ease,
-    color 0.18s ease;
-}
-
-.slang-page__button:hover {
-  transform: translateY(-1px);
 }
 
 @media (max-width: 900px) {

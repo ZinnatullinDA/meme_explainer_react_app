@@ -1,3 +1,4 @@
+import { Checkbox, Input, Select } from 'antd'
 import { useEffect, useState } from 'react'
 import { fetchMemes, fetchMemesBySubreddit, fetchRandomMemes } from '@/entities/meme'
 import { setOnlyFavorites, setSearch, setSubreddit } from '@/features/meme/model/meme-filter.slice'
@@ -22,8 +23,8 @@ export function FilterMeme() {
           <span>
             Поиск
           </span>
-          <input
-            className={styles['meme-filters__input']}
+          <Input.Search
+            allowClear
             onChange={event => setSearchValue(event.target.value)}
             placeholder="Например, Drake"
             value={searchValue}
@@ -34,10 +35,8 @@ export function FilterMeme() {
           <span>
             Источник
           </span>
-          <select
-            className={styles['meme-filters__input']}
-            onChange={(event) => {
-              const value = event.target.value
+          <Select
+            onChange={(value) => {
               dispatch(setSubreddit(value))
 
               if (value === 'all') {
@@ -52,37 +51,24 @@ export function FilterMeme() {
 
               dispatch(fetchMemesBySubreddit(value))
             }}
+            options={[
+              { label: 'Все мемы', value: 'all' },
+              { label: 'Случайный мем', value: 'random' },
+              { label: 'r/memes', value: 'memes' },
+              { label: 'r/dankmemes', value: 'dankmemes' },
+              { label: 'r/ProgrammerHumor', value: 'ProgrammerHumor' },
+            ]}
             value={subreddit}
-          >
-            <option value="all">
-              Все мемы
-            </option>
-            <option value="random">
-              Случайный мем
-            </option>
-            <option value="memes">
-              r/memes
-            </option>
-            <option value="dankmemes">
-              r/dankmemes
-            </option>
-            <option value="ProgrammerHumor">
-              r/ProgrammerHumor
-            </option>
-          </select>
+          />
         </label>
       </div>
 
-      <label className={styles['meme-filters__toggle']}>
-        <input
-          checked={onlyFavorites}
-          onChange={event => dispatch(setOnlyFavorites(event.target.checked))}
-          type="checkbox"
-        />
-        <span>
-          Показывать только избранное
-        </span>
-      </label>
+      <Checkbox
+        checked={onlyFavorites}
+        onChange={event => dispatch(setOnlyFavorites(event.target.checked))}
+      >
+        Показывать только избранное
+      </Checkbox>
     </section>
   )
 }

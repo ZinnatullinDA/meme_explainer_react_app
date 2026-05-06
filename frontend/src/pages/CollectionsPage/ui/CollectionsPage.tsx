@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { Card, Empty, Space, Tag, Typography } from 'antd'
 import { ROUTES } from '@/shared/config/routes'
 import { useAppSelector } from '@/shared/lib/hooks'
 import styles from './CollectionPage.module.css'
@@ -10,58 +11,55 @@ export function CollectionsPage() {
   return (
     <div className={styles['collections-page']}>
       <section className={styles['collections-page__hero']}>
-        <h1 className={styles['collections-page__title']}>
+        <Typography.Title
+          className={styles['collections-page__title']}
+          level={1}
+        >
           Подборки
-        </h1>
+        </Typography.Title>
       </section>
 
       <div className={styles['collections-page__grid']}>
         {collections.length === 0 && (
-          <section className={styles['collections-page__card']}>
-            <h2 className={styles['collections-page__card-title']}>
-              Пока пусто
-            </h2>
-            <p className={styles['collections-page__text-muted']}>
-              Создайте подборку на странице деталей любого мема.
-            </p>
-          </section>
+          <Card className={styles['collections-page__card']}>
+            <Empty description="Создайте подборку на странице деталей любого мема" />
+          </Card>
         )}
 
         {collections.map(collection => (
-          <section
+          <Card
             className={styles['collections-page__card']}
             key={collection.id}
+            title={collection.name}
           >
-            <p className={styles['collections-page__eyebrow']}>
+            <Typography.Text type="secondary">
               {new Date(collection.updatedAt).toLocaleDateString('ru-RU')}
-            </p>
-            <h2 className={styles['collections-page__card-title']}>
-              {collection.name}
-            </h2>
-            <p className={styles['collections-page__text-muted']}>
+            </Typography.Text>
+            <Typography.Paragraph className={styles['collections-page__text-muted']}>
               {collection.description || 'Описание пока не добавлено.'}
-            </p>
-            <div className={styles['collections-page__chips']}>
+            </Typography.Paragraph>
+            <Space wrap>
               {collection.memeIds.length === 0 && (
-                <span className={styles['collections-page__badge']}>
+                <Tag>
                   Мемов пока нет
-                </span>
+                </Tag>
               )}
               {collection.memeIds.map((memeId) => {
                 const meme = memes.find(item => item.id === memeId)
                 return (
                   <Link
-                    className={`${styles['collections-page__chip']} ${styles['collections-page__chip--active']}`}
                     key={memeId}
                     params={{ id: memeId }}
                     to={ROUTES.memeDetails}
                   >
-                    {meme?.title ?? memeId}
+                    <Tag color="blue">
+                      {meme?.title ?? memeId}
+                    </Tag>
                   </Link>
                 )
               })}
-            </div>
-          </section>
+            </Space>
+          </Card>
         ))}
       </div>
     </div>

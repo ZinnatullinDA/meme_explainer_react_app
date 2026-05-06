@@ -1,3 +1,4 @@
+import { Spin, Typography } from 'antd'
 import { useEffect } from 'react'
 import { fetchMemes, selectMemes, selectMemesStatus } from '@/entities/meme'
 import { FilterMeme } from '@/features/meme'
@@ -23,20 +24,22 @@ export function HomePage() {
   return (
     <div className={styles['home-page']}>
       <section className={styles['home-page__hero']}>
-        <h1 className={styles['home-page__title']}>
+        <Typography.Title
+          className={styles['home-page__title']}
+          level={1}
+        >
           Meme Explainer
-        </h1>
-        <p className={styles['home-page__copy']}>
-          Приложение показывает мемы, объясняет их человеческим языком и помогает сохранять контекст в избранном,
-          заметках и подборках.
-        </p>
+        </Typography.Title>
+        <Typography.Paragraph className={styles['home-page__copy']}>
+          Приложение показывает мемы, объясняет их человеческим языком и помогает сохранять контекст в избранном, заметках и подборках.
+        </Typography.Paragraph>
       </section>
 
       <FilterMeme />
 
       {status === 'loading' && (
         <div className={styles['home-page__panel']}>
-          Загружаем мемы...
+          <Spin tip="Загружаем мемы..." />
         </div>
       )}
       {status !== 'loading' && (

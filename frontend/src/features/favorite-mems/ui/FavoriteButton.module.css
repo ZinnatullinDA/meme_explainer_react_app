@@ -1,62 +1,7 @@
-.favorite-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 16px;
-  border: 0;
-  border-radius: 999px;
-  background: #ece3d5;
-  color: var(--text);
-  cursor: pointer;
-  transition:
-    transform 0.18s ease,
-    background-color 0.18s ease,
-    color 0.18s ease;
-}
-
-.favorite-button:hover {
-  transform: translateY(-1px);
-}
-
-.favorite-button--active {
-  background: var(--accent);
-  color: #fff7f3;
-}
-
 .favorite-button--icon {
   position: absolute;
   z-index: 2;
   top: 34px;
   right: 34px;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 1px solid rgba(87, 58, 31, 0.12);
-  border-radius: 50%;
-  background: rgba(255, 251, 245, 0.9);
-  color: rgba(37, 27, 20, 0.52);
   box-shadow: 0 10px 30px rgba(95, 57, 27, 0.16);
-}
-
-.favorite-button--icon:hover {
-  transform: translateY(-1px) scale(1.04);
-}
-
-.favorite-button--icon-active {
-  border-color: rgba(218, 165, 32, 0.42);
-  background: #fff8df;
-  color: #d9a31f;
-}
-
-.favorite-button__icon {
-  width: 22px;
-  height: 22px;
-  fill: transparent;
-  stroke: currentColor;
-  stroke-linejoin: round;
-  stroke-width: 1.8;
-}
-
-.favorite-button--icon-active .favorite-button__icon {
-  fill: currentColor;
 }

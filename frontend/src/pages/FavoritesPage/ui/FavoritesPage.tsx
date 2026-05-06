@@ -1,3 +1,4 @@
+import { Typography } from 'antd'
 import { useEffect } from 'react'
 import { fetchMemes, selectMemesStatus } from '@/entities/meme'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks'
@@ -19,9 +20,12 @@ export function FavoritesPage() {
   return (
     <div className={styles['favorites-page']}>
       <section className={styles['favorites-page__hero']}>
-        <h1 className={styles['favorites-page__title']}>
+        <Typography.Title
+          className={styles['favorites-page__title']}
+          level={1}
+        >
           Избранные мемы
-        </h1>
+        </Typography.Title>
       </section>
       <MemeFeed
         memes={memes}

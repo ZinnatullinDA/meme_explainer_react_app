@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { App } from '@/app/app'
 import { AppProviders } from '@/app/providers/app-providers'
+import 'antd/dist/reset.css'
 import './index.css'
 
 const container = document.getElementById('root')

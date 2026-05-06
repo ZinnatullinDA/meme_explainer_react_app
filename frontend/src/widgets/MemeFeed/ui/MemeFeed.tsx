@@ -1,5 +1,6 @@
 import type { Meme } from '@/entities/meme'
 import { Link } from '@tanstack/react-router'
+import { Card, Empty, Pagination, Tag } from 'antd'
 import { FavoriteButton } from '@/features/favorite-mems'
 import { ROUTES } from '@/shared/config/routes'
 import { usePagination } from '@/shared/lib/use-pagination'
@@ -19,17 +20,37 @@ export function MemeFeed({ memes, title }: MemeFeedProps) {
         <h2>
           {title}
         </h2>
-        <span className={styles['meme-feed__badge']}>
+        <Tag color="blue">
           {memes.length}
           {' '}
           шт.
-        </span>
+        </Tag>
       </div>
+
+      {paginatedItems.length === 0 && (
+        <Card>
+          <Empty description="Мемы не найдены" />
+        </Card>
+      )}
 
       <div className={styles['meme-feed__grid']}>
         {paginatedItems.map(meme => (
-          <article
+          <Card
             className={styles['meme-feed__card']}
+            cover={(
+              <Link
+                params={{ id: meme.id }}
+                to={ROUTES.memeDetails}
+              >
+                <img
+                  alt={meme.title}
+                  className={styles['meme-feed__image']}
+                  loading="lazy"
+                  src={meme.url}
+                />
+              </Link>
+            )}
+            hoverable
             key={meme.id}
           >
             <FavoriteButton
@@ -41,52 +62,27 @@ export function MemeFeed({ memes, title }: MemeFeedProps) {
               params={{ id: meme.id }}
               to={ROUTES.memeDetails}
             >
-              <img
-                alt={meme.title}
-                className={styles['meme-feed__image']}
-                loading="lazy"
-                src={meme.url}
-              />
-              <div className={styles['meme-feed__body']}>
-                <div>
-                  <p className={styles['meme-feed__eyebrow']}>
-                    {meme.source}
-                  </p>
-                  <h3>
-                    {meme.title}
-                  </h3>
-                </div>
-              </div>
+              <p className={styles['meme-feed__eyebrow']}>
+                {meme.source}
+              </p>
+              <h3>
+                {meme.title}
+              </h3>
             </Link>
-          </article>
+          </Card>
         ))}
       </div>
 
-      <div className={styles['meme-feed__pagination']}>
-        <button
-          className={styles['meme-feed__button']}
-          disabled={page === 1}
-          onClick={() => setPage(page - 1)}
-          type="button"
-        >
-          Назад
-        </button>
-        <span className={styles['meme-feed__page-info']}>
-          Страница
-          {page}
-          {' '}
-          из
-          {totalPages}
-        </span>
-        <button
-          className={styles['meme-feed__button']}
-          disabled={page === totalPages}
-          onClick={() => setPage(page + 1)}
-          type="button"
-        >
-          Вперёд
-        </button>
-      </div>
+      {totalPages > 1 && (
+        <Pagination
+          align="center"
+          current={page}
+          onChange={setPage}
+          pageSize={8}
+          showSizeChanger={false}
+          total={memes.length}
+        />
+      )}
     </section>
   )
 }
