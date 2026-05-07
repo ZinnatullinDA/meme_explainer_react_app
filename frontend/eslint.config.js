@@ -38,11 +38,8 @@ export default antfu(
     },
 
     typescript: {
-      // Если захочешь жесткий type-aware lint:
-      // tsconfigPath: 'tsconfig.json',
       overrides: {
         'ts/no-non-null-assertion': 'error',
-        // 'ts/explicit-function-return-type': 'error',
       },
     },
   },
@@ -114,7 +111,7 @@ export default antfu(
         },
       ],
       'react/no-array-index-key': 'warn',
-      'react/prop-types': 'off', // если проект на TS
+      'react/prop-types': 'off',
     },
   },
 
